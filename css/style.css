@@ -3,17 +3,22 @@
   border: none;
   padding: 0;
   margin: 0;
+  font-family: 'Yeon Sung', cursive;
+}
+html {
+  position: relative;
 }
 
 body {
   font-size: 25px;
-  position: relative;
+  margin-top: 30px;
+  background: url(../image/background.png);
 }
 
-
 header {
-  margin: 30px auto;
-  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  position: relative;
 }
 
 .start-popup {
@@ -40,7 +45,7 @@ header {
   margin-top: 80px;
 }
 
-.player1-name, .player2-name {
+.player1-name, .player2-name, .betting > input[type="text"] {
   font-size: 50px;
   width: 500px;
   height: 50px;
@@ -51,7 +56,6 @@ header {
 }
 
 .start-button {
-  /* margin-top: 200px; */
   width: 100px;
   height: 50px;
   font-size: 50px;
@@ -72,13 +76,45 @@ header {
   background: rgba(0, 0, 0, .5);
 }
 
+.betting-content {
+  font-size: 50px;
+  height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  width: 760px;
+}
+
+.btn-new {
+  position: absolute;
+  font-size: 40px !important;
+  width: 150px;
+  top: 0;
+  right: 20px;
+  height: 50px;
+  background-color: lightgrey;
+  color: white;
+  font-size: 20px;
+  border: none;
+  border-radius: 20px;
+}
+
+.x-block{
+  display: flex;
+  justify-content: center;
+}
+
+.fa-w-11{
+  align-items: center;
+}
+
 main {
   display: flex;
+  /* padding: 0 20px; */
 }
 
 .space {
   margin: 0 auto;
-  background: url(../image/omok.jpg) no-repeat;
+  background: url(../image/omok_old_photo.jpg) no-repeat;
   background-size: contain;
   width: 760px;
   height: 760px;
@@ -97,30 +133,26 @@ main {
 }
 
 .black-circle{
-  /* display:inline-block; */
+  display:inline-block;
   width: 100%;
   height: 100%;
   /* border: 1px solid #000; */
-  border-radius: 50%;
-  background: #000;
+  /* border-radius: 20%; */
+  background: url(../image/black-stone.png);
 }
 
 .white-circle{
   display:inline-block;
   width: 100%;
   height: 100%;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  background: #fff;
+  /* border: 1px solid #fff;
+  border-radius: 20%; */
+  background: url(../image/white-stone.png);
 }
 
-.x-block{
-  /* display:inline-block; */
-  width: 100%;
-  height: 100%;
-  /* border: 1px solid #fff; */
-  /* border-radius: 50%; */
-  background: red;
+.fa-times {
+  color : red;
+  font-size: 40px;
 }
 
 .player-1-panel {
@@ -129,6 +161,7 @@ main {
   background-color: rgb(222, 221, 219);
   /* #003458; */
   color: white;
+  visibility: visible;
 }
 
 .player-2-panel {
@@ -136,32 +169,36 @@ main {
   height: 760px;
   background-color: rgb(188, 180, 178);
   color: white;
+  visibility: visible;
 }
 
-.player-name {
+.player-1-panel > .player-name, .player-2-panel > .player-name {
+  margin: 20px 0;
+  font-size: 60px;
+  text-align: center;
+}
+
+.player-timer1, .player-timer2{
+  margin: 40px 0;
+  text-align: center;
   font-size: 40px;
-  text-align: center;
+  visibility: hidden;
 }
 
-.player-timer {
-  text-align: center;
-  font-size: 80px;
+.active .player-timer1 {
+  visibility: visible;
+}
+
+.active .player-timer2 {
+  visibility: visible;
 }
 
 .active {background-color: #660000; }
 .active .player-name {
-  font-size: 40px;
+  margin: 20px 0;
+  font-size: 60px;
+  visibility: visible;
   /* font-weight: 500; */
-}
-
-.btn-new {
-  width: 200px;
-  left: 50%;
-  height: 50px;
-  background-color: lightgrey;
-  color: white;
-  font-size: 20px;
-  border: none;
 }
 
 .ending-popup {
@@ -196,6 +233,23 @@ main {
   margin-top: 50px;
 }
 
+.ending-betting {
+  display: block;
+  margin-top: 50px;
+
+}
+
+.ending-betting-content {
+  font-size: 40px;
+  /* font-size: 50px; */
+  width: 500px;
+  height: 50px;
+  /* vertical-align: top; */
+  text-align: center;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
 .victory-yes, .victory-no {
   font-size: 40px;
   margin: 150px 30px 0 30px;
@@ -209,5 +263,5 @@ main {
 footer {
   font-size: 15px;
   margin: 10px auto;
-  width: 300px;
+  text-align: center;
 }
