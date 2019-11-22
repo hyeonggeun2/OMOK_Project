@@ -287,10 +287,11 @@ const checkVertical = (id, checkNum) => {
 
 const recordRender = () => {
   let html = '';
-  gameRecord.forEach(({ order, winner, loser, betting }) => {
+  gameRecord.forEach(({ order, winner, loser, betting, multi }) => {
+    if (multi === undefined) multi = 1;
     html += `<li class="order">${order}.
       <span>${winner}(승) vs ${loser}(패)</span><br>
-      <span>&nbsp&nbsp&nbsp"${betting}"</span>
+      <span>&nbsp&nbsp&nbsp"${betting} X ${multi}"</span>
       </li>`;
   });
 
@@ -303,17 +304,17 @@ const getRecord = async () => {
   recordRender();
 };
 
-const addRecord = async (player1Name, player2Name, bettingContent) => {
+const addRecord = async (player1Name, player2Name, bettingContent, multi) => {
   let winner;
   let loser;
   if (state === 1) {
     winner = player1Name;
     loser = player2Name;
   } else {
-    winner = player2Name;
-    loser = $player1Name;
+    winner = player1Name;
+    loser = player2Name;
   }
-  const res = await axios.post('/gameRecord', { order: gameRecord.length + 1, winner, loser, betting: bettingContent });
+  const res = await axios.post('/gameRecord', { order: gameRecord.length + 1, winner, loser, betting: bettingContent, multi });
   gameRecord = res.data;
   console.log(res);
   recordRender();
@@ -406,11 +407,13 @@ const endingPopup = () => {
   if (state === 1) {
     $victoryContent.innerHTML = `${$panelName1.textContent}가(이) 이겼닭!`;
     $more.innerHTML = `${$panelName1.textContent} , ${$panelName2.textContent} 한판 더?`;
-    addRecord($panelName1.textContent, $panelName2.textContent, $bettingContent.textContent);
+    const [, count] = $bettingPenalty2.textContent.split(' X ');
+    addRecord($panelName1.textContent, $panelName2.textContent, $bettingContent.textContent, count);
   } else {
     $victoryContent.innerHTML = `${$panelName2.textContent}가(이) 이겼닭!`;
     $more.innerHTML = `${$panelName1.textContent} , ${$panelName2.textContent} 한판 더?`;
-    addRecord($panelName2.textContent, $panelName1.textContent, $bettingContent.textContent);
+    const [, count] = $bettingPenalty1.textContent.split(' X ');
+    addRecord($panelName2.textContent, $panelName1.textContent, $bettingContent.textContent, count);
   }
 };
 
@@ -473,12 +476,12 @@ const timerCloser = (() => {
     timer1() {
       clearInterval(player2TimeId);
       $playerTimer1.innerHTML = 30;
-      player1TimeId = setInterval(timer1, 500);
+      player1TimeId = setInterval(timer1, 200);
     },
     timer2() {
       clearInterval(player1TimeId);
       $playerTimer2.innerHTML = 30;
-      player2TimeId = setInterval(timer2, 500);
+      player2TimeId = setInterval(timer2, 200);
     },
     stopTimer() {
       clearInterval(player1TimeId);
@@ -553,11 +556,8 @@ $space.onclick = ({ target }) => {
 
 // 시작 버튼에 의한 이벤트
 $startBtn.onclick = () => {
-  if (!$player1Name.value.trim() || !$player2Name.value.trim()) {
-    $player1Name.value = 'Player1';
-    $player2Name.value = 'Player2';
-    // return;
-  }
+  if (!$player1Name.value.trim()) $player1Name.value = 'Player1';
+  if (!$player2Name.value.trim()) $player2Name.value = 'Player2';
 
   $space.style.visibility = 'visible';
   popupclose();

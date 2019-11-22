@@ -10590,8 +10590,10 @@ var recordRender = function recordRender() {
     var order = _ref.order,
         winner = _ref.winner,
         loser = _ref.loser,
-        betting = _ref.betting;
-    html += "<li class=\"order\">".concat(order, ".\n      <span>").concat(winner, "(\uC2B9) vs ").concat(loser, "(\uD328)</span><br>\n      <span>&nbsp&nbsp&nbsp\"").concat(betting, "\"</span>\n      </li>");
+        betting = _ref.betting,
+        multi = _ref.multi;
+    if (multi === undefined) multi = 1;
+    html += "<li class=\"order\">".concat(order, ".\n      <span>").concat(winner, "(\uC2B9) vs ").concat(loser, "(\uD328)</span><br>\n      <span>&nbsp&nbsp&nbsp\"").concat(betting, " X ").concat(multi, "\"</span>\n      </li>");
   });
   $gameRecord.innerHTML = html;
 };
@@ -10618,7 +10620,7 @@ var getRecord = function getRecord() {
   });
 };
 
-var addRecord = function addRecord(player1Name, player2Name, bettingContent) {
+var addRecord = function addRecord(player1Name, player2Name, bettingContent, multi) {
   var winner, loser, res;
   return regeneratorRuntime.async(function addRecord$(_context2) {
     while (1) {
@@ -10628,8 +10630,8 @@ var addRecord = function addRecord(player1Name, player2Name, bettingContent) {
             winner = player1Name;
             loser = player2Name;
           } else {
-            winner = player2Name;
-            loser = $player1Name;
+            winner = player1Name;
+            loser = player2Name;
           }
 
           _context2.next = 3;
@@ -10637,7 +10639,8 @@ var addRecord = function addRecord(player1Name, player2Name, bettingContent) {
             order: gameRecord.length + 1,
             winner: winner,
             loser: loser,
-            betting: bettingContent
+            betting: bettingContent,
+            multi: multi
           }));
 
         case 3:
@@ -10741,11 +10744,21 @@ var endingPopup = function endingPopup() {
   if (state === 1) {
     $victoryContent.innerHTML = "".concat($panelName1.textContent, "\uAC00(\uC774) \uC774\uACBC\uB2ED!");
     $more.innerHTML = "".concat($panelName1.textContent, " , ").concat($panelName2.textContent, " \uD55C\uD310 \uB354?");
-    addRecord($panelName1.textContent, $panelName2.textContent, $bettingContent.textContent);
+
+    var _$bettingPenalty2$tex = $bettingPenalty2.textContent.split(' X '),
+        _$bettingPenalty2$tex2 = _slicedToArray(_$bettingPenalty2$tex, 2),
+        count = _$bettingPenalty2$tex2[1];
+
+    addRecord($panelName1.textContent, $panelName2.textContent, $bettingContent.textContent, count);
   } else {
     $victoryContent.innerHTML = "".concat($panelName2.textContent, "\uAC00(\uC774) \uC774\uACBC\uB2ED!");
     $more.innerHTML = "".concat($panelName1.textContent, " , ").concat($panelName2.textContent, " \uD55C\uD310 \uB354?");
-    addRecord($panelName2.textContent, $panelName1.textContent, $bettingContent.textContent);
+
+    var _$bettingPenalty1$tex = $bettingPenalty1.textContent.split(' X '),
+        _$bettingPenalty1$tex2 = _slicedToArray(_$bettingPenalty1$tex, 2),
+        _count = _$bettingPenalty1$tex2[1];
+
+    addRecord($panelName2.textContent, $panelName1.textContent, $bettingContent.textContent, _count);
   }
 }; // 턴 토글
 
@@ -10813,12 +10826,12 @@ var timerCloser = function () {
     timer1: function timer1() {
       clearInterval(player2TimeId);
       $playerTimer1.innerHTML = 30;
-      player1TimeId = setInterval(_timer, 500);
+      player1TimeId = setInterval(_timer, 200);
     },
     timer2: function timer2() {
       clearInterval(player1TimeId);
       $playerTimer2.innerHTML = 30;
-      player2TimeId = setInterval(_timer2, 500);
+      player2TimeId = setInterval(_timer2, 200);
     },
     stopTimer: function stopTimer() {
       clearInterval(player1TimeId);
@@ -10896,11 +10909,8 @@ $space.onclick = function (_ref2) {
 
 
 $startBtn.onclick = function () {
-  if (!$player1Name.value.trim() || !$player2Name.value.trim()) {
-    $player1Name.value = 'Player1';
-    $player2Name.value = 'Player2'; // return;
-  }
-
+  if (!$player1Name.value.trim()) $player1Name.value = 'Player1';
+  if (!$player2Name.value.trim()) $player2Name.value = 'Player2';
   $space.style.visibility = 'visible';
   popupclose();
   inputName();
