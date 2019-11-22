@@ -10630,8 +10630,13 @@ var addRecord = function addRecord(player1Name, player2Name, bettingContent, mul
             winner = player1Name;
             loser = player2Name;
           } else {
+<<<<<<< HEAD
             winner = player1Name;
             loser = player2Name;
+=======
+            winner = player2Name;
+            loser = player1Name;
+>>>>>>> c1283f52b71e8ad31397624129ec56893d0a5f91
           }
 
           _context2.next = 3;
