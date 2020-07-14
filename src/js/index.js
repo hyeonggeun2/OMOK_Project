@@ -388,7 +388,7 @@ const checkNone = (id) => {
     return pre;
   }, 0);
 
-  if (checkNum3 >= 2 || checkNum4 >= 2) { stateArr[row][col] = 3; return 1; }
+  if ((checkNum3 >= 2 && checkNum4 == 0) || checkNum4 >= 2) { stateArr[row][col] = 3; return 1; }
 };
 
 // stateArr 배열을 그리는 함수

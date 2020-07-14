@@ -10824,7 +10824,7 @@ var checkNone = function checkNone(id) {
     return pre;
   }, 0);
 
-  if (checkNum3 >= 2 || checkNum4 >= 2) {
+  if (checkNum3 >= 2 && checkNum4 == 0 || checkNum4 >= 2) {
     stateArr[row][col] = 3;
     return 1;
   }
