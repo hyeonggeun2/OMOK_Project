@@ -76,6 +76,8 @@ const checkRightDiagonal = (id, checkNum) => {
       if (count === 4) return true;
       if ((position(id, 1, 1) === 0 || position(id, 1, 1) === 3) && position(id, 2, 2) === 1 && position(id, 3, 3) === 1 && position(id, 4, 4) === 1) return true;
       if ((position(id, -1, -1) === 0 || position(id, -1, -1) === 3) && position(id, -2, -2) === 1 && position(id, -3, -3) === 1 && position(id, -4, -4) === 1) return true;
+      if ((position(id, 2, 2) === 0 || position(id, 2, 2) === 3) && position(id, 1, 1) === 1 && position(id, 3, 3) === 1 && position(id, 4, 4) === 1) return true;
+      if ((position(id, -2, -2) === 0 || position(id, -2, -2) === 3) && position(id, -1, -1) === 1 && position(id, -3, -3) === 1 && position(id, -4, -4) === 1) return true;
 
       if (position(id, -1, -1) !== 1 && position(id, 1, 1) !== 1) return false; // 양쪽이 비었을 경우 안된다.
       
@@ -145,6 +147,8 @@ const checkLeftDiagonal = (id, checkNum) => {
       if (count === 4) return true;
       if ((position(id, -1, 1) === 0 || position(id, -1, 1) === 3) && position(id, -2, 2) === 1 && position(id, -3, 3) === 1 && position(id, -4, 4) === 1) return true;
       if ((position(id, 1, -1) === 0 || position(id, 1, -1) === 3) && position(id, 2, -2) === 1 && position(id, 3, -3) === 1 && position(id, 4, -4) === 1) return true;
+      if ((position(id, -2, 2) === 0 || position(id, -2, 2) === 3) && position(id, -1, 1) === 1 && position(id, -3, 3) === 1 && position(id, -4, 4) === 1) return true;
+      if ((position(id, 2, -2) === 0 || position(id, 2, -2) === 3) && position(id, 1, -1) === 1 && position(id, 3, -3) === 1 && position(id, 4, -4) === 1) return true;
 
       if (position(id, 1, -1) !== 1 && position(id, -1, 1) !== 1) return false; // 양쪽이 비었을 경우 안된다.
 
@@ -213,6 +217,8 @@ const checkHorizon = (id, checkNum) => {
       if (count === 4) return true;
       if ((position(id, 0, 1) === 0 || position(id, 0, 1) === 3) && position(id, 0, 2) === 1 && position(id, 0, 3) === 1 && position(id, 0, 4) === 1) return true;
       if ((position(id, 0, -1) === 0 || position(id, 0, -1) === 3) && position(id, 0, -2) === 1 && position(id, 0, -3) === 1 && position(id, 0, -4) === 1) return true;
+      if ((position(id, 0, 2) === 0 || position(id, 0, 2) === 3) && position(id, 0, 1) === 1 && position(id, 0, 3) === 1 && position(id, 0, 4) === 1) return true;
+      if ((position(id, 0, -2) === 0 || position(id, 0, -2) === 3) && position(id, 0, -1) === 1 && position(id, 0, -3) === 1 && position(id, 0, -4) === 1) return true;
 
       if (position(id, 0, -1) !== 1 && position(id, 0, 1) !== 1) return false; // 양쪽이 비었을 경우 안된다.
 
@@ -281,6 +287,8 @@ const checkVertical = (id, checkNum) => {
       if (count === 4) return true;
       if ((position(id, 1, 0) === 0 || position(id, 1, 0) === 3) && position(id, 2, 0) === 1 && position(id, 3, 0) === 1 && position(id, 4, 0) === 1) return true;
       if ((position(id, -1, 0) === 0 || position(id, -1, 0) === 3) && position(id, -2, 0) === 1 && position(id, -3, 0) === 1 && position(id, -4, 0) === 1) return true;
+      if ((position(id, 2, 0) === 0 || position(id, 2, 0) === 3) && position(id, 1, 0) === 1 && position(id, 3, 0) === 1 && position(id, 4, 0) === 1) return true;
+      if ((position(id, -2, 0) === 0 || position(id, -2, 0) === 3) && position(id, -1, 0) === 1 && position(id, -3, 0) === 1 && position(id, -4, 0) === 1) return true;
 
       if (position(id, -1, 0) !== 1 && position(id, 1, 0) !== 1) return false; // 양쪽이 비었을 경우 안된다.
 
