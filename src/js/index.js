@@ -523,12 +523,12 @@ const timerCloser = (() => {
     timer1() {
       clearInterval(player2TimeId);
       $playerTimer1.innerHTML = 30;
-      player1TimeId = setInterval(timer1, 1000);
+      player1TimeId = setInterval(timer1, 500);
     },
     timer2() {
       clearInterval(player1TimeId);
       $playerTimer2.innerHTML = 30;
-      player2TimeId = setInterval(timer2, 1000);
+      player2TimeId = setInterval(timer2, 500);
     },
     stopTimer() {
       clearInterval(player1TimeId);
@@ -622,12 +622,6 @@ $bettingList.onkeyup = ({ keyCode }) => {
   active();
 };
 
-// $endingBettingContent.onkeyup = ({ keyCode }) => {
-//   if (keyCode !== 13 || !$endingBettingConten.value.trim()) return;
-
-//   restart();
-// };
-
 window.onload = () => {
   render();
   getRecord();
@@ -635,18 +629,3 @@ window.onload = () => {
 $victoryNo.addEventListener('click', init);
 $victoryYes.addEventListener('click', restart);
 document.querySelector('.btn-new').addEventListener('click', init);
-
-// server.js와 연결
-// 시작 load(get) 해서 render //끝날 때 값을(post) 저장
-
-// const getRecord () => {
-
-// };
-
-// if (state === 1) {
-//   $victoryContent.innerHTML = `${$panelName1.textContent}가(이) 이겼닭!`;
-//   $more.innerHTML = `${$panelName1.textContent} , ${$panelName2.textContent} 한판 더?`;
-// } else {
-//   $victoryContent.innerHTML = `${$panelName2.textContent}가(이) 이겼닭!`;
-//   $more.innerHTML = `${$panelName1.textContent} , ${$panelName2.textContent} 한판 더?`;
-// }
