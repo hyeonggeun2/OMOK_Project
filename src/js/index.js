@@ -67,12 +67,14 @@ const checkRightDiagonal = (id, checkNum) => {
         if (position(id, 1, 1) === 2 && position(id, -4, -4) === 2) break;
         if (position(id, -i, -i) === 1) count++;
       }
+      if (position(id, 1, 1) === 1) count--;
       if (count === 4) return true; count = 1;
 
       for (let i = 1; i <= 3; i++) { // 오른쪽 아래 방향에 3개가 다 있는 경우
         if (position(id, -1, -1) === 2 && position(id, 4, 4) === 2) break;
         if (position(id, i, i) === 1) count++;
       }
+      if (position(id, -1, -1) === 1) count--;
       if (count === 4) return true;
       if ((position(id, 1, 1) === 0 || position(id, 1, 1) === 3) && position(id, 2, 2) === 1 && position(id, 3, 3) === 1 && position(id, 4, 4) === 1) return true;
       if ((position(id, -1, -1) === 0 || position(id, -1, -1) === 3) && position(id, -2, -2) === 1 && position(id, -3, -3) === 1 && position(id, -4, -4) === 1) return true;
@@ -138,12 +140,14 @@ const checkLeftDiagonal = (id, checkNum) => {
         if (position(id, -1, 1) === 2 && position(id, 4, -4) === 2) break;
         if (position(id, i, -i) === 1) count++;
       }
+      if (position(id, -1, 1) === 1) count--;
       if (count === 4) return true; count = 1;
     
       for (let i = 1; i <= 3; i++) { // 오른쪽 아래 방향에 3개가 다 있는 경우
         if (position(id, 1, -1) === 2 && position(id, -4, 4) === 2) break;
         if (position(id, -i, i) === 1) count++;
       }
+      if (position(id, 1, -1) === 1) count--;
       if (count === 4) return true;
       if ((position(id, -1, 1) === 0 || position(id, -1, 1) === 3) && position(id, -2, 2) === 1 && position(id, -3, 3) === 1 && position(id, -4, 4) === 1) return true;
       if ((position(id, 1, -1) === 0 || position(id, 1, -1) === 3) && position(id, 2, -2) === 1 && position(id, 3, -3) === 1 && position(id, 4, -4) === 1) return true;
@@ -188,7 +192,7 @@ const checkLeftDiagonal = (id, checkNum) => {
       break;
   }
   return count;
-};
+};c
 
 const checkHorizon = (id, checkNum) => {
   let count = 1;
@@ -208,12 +212,14 @@ const checkHorizon = (id, checkNum) => {
         if (position(id, 0, 1) === 2 && position(id, 0, -4) === 2) break;
         if (position(id, 0, -i) === 1) count++;
       }
+      if (position(id, 0, 1) === 1) count--;
       if (count === 4) return true; count = 1;
     
       for (let i = 1; i <= 3; i++) { // 오른쪽 아래 방향에 3개가 다 있는 경우
         if (position(id, 0, -1) === 2 && position(id, 0, 4) === 2) break;
         if (position(id, 0, i) === 1) count++;
       }
+      if (position(id, 0, -1) === 1) count--;
       if (count === 4) return true;
       if ((position(id, 0, 1) === 0 || position(id, 0, 1) === 3) && position(id, 0, 2) === 1 && position(id, 0, 3) === 1 && position(id, 0, 4) === 1) return true;
       if ((position(id, 0, -1) === 0 || position(id, 0, -1) === 3) && position(id, 0, -2) === 1 && position(id, 0, -3) === 1 && position(id, 0, -4) === 1) return true;
@@ -278,12 +284,14 @@ const checkVertical = (id, checkNum) => {
         if (position(id, 1, 0) === 2 && position(id, -4, 0) === 2) break;
         if (position(id, -i, 0) === 1) count++;
       }
+      if (position(id, 1, 0) === 1) count--;
       if (count === 4) return true; count = 1;
     
       for (let i = 1; i <= 3; i++) { // 오른쪽 아래 방향에 3개가 다 있는 경우
         if (position(id, -1, 0) === 2 && position(id, 4, 0) === 2) break;
         if (position(id, i, 0) === 1) count++;
-      }``
+      }
+      if (position(id, -1, 0) === 1) count--;
       if (count === 4) return true;
       if ((position(id, 1, 0) === 0 || position(id, 1, 0) === 3) && position(id, 2, 0) === 1 && position(id, 3, 0) === 1 && position(id, 4, 0) === 1) return true;
       if ((position(id, -1, 0) === 0 || position(id, -1, 0) === 3) && position(id, -2, 0) === 1 && position(id, -3, 0) === 1 && position(id, -4, 0) === 1) return true;
