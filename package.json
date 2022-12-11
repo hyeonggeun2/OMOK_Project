@@ -20,7 +20,7 @@
   "homepage": "https://github.com/hyeonggeun2/OMOK_Project#readme",
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
